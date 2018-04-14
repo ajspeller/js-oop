@@ -1,52 +1,33 @@
-// Value Types -- copy by value
-// ===========
-// Number
-// String
-// Boolean
-// Symbol
-// undefined
-// null
-
-// Reference Types -- copy by reference
-// ===============
-// Object
-// Function
-// Array
-
-let x = 10;
-let y = x;
-
-x = 20;
-
-// x & y are independent
-console.log(x);
-console.log(y);
-
-console.log(`-------`);
-
-let a = { value: 10 };
-let b = a;
-
-a.value = 20;
-
-console.log(a.value);
-console.log(b.value);
-
-let number = 10; 
-
-function increase(number){
-    number++;
+// constructor function
+function Circle(radius) {
+    this.radius = radius;
+    this.draw = function () {
+        console.log('draw');
+    }
 }
 
-increase(number);
-console.log(`number: `, number);
+const circle = new Circle(10);
 
+circle.location = {
+    x: 1
+};
 
-let obj = { value: 10 }; 
+// bracket notation:  useful for dynamic usage
+circle['location'] = {
+    x: 1
+};
 
-function increase(obj){
-    obj.value++;
-}
+const propName = 'location';
+circle[propName] = {
+    x: 1
+};
 
-increase(obj);
-console.log(`obj: `, obj);
+// bracket notation:  also useful when using special characters and reserved words
+const propName2 = 'center location';
+circle[propName2] = {
+    x: 1
+};
+
+// remove properties
+delete circle.location;
+delete circle['location'];
