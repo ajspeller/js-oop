@@ -7,23 +7,41 @@
 // constructor function
 function Circle(radius) {
     this.radius = radius;
-    
+
     let defaultLocation = { // hide
         x: 0,
         y: 0
     };
 
-    let computeOptimumLocation = function () { // hide
+    // one method to get the value of the property
+    // this.getDefaultLocation = function() {
+    //     return defaultLocation;
+    // };
 
-    };
     this.draw = function () {
-        computeOptimumLocation();
-        // defaultLocation
-        // this.radius
         console.log('draw');
-    }
+    };
+
+
+    Object.defineProperty(this, 'defaultLocation', {
+        // read only property
+        get: function () {
+            return defaultLocation;
+        },
+        // write to the property
+        set: function (value) {
+            if (!value.x || !value.y) {
+                throw new Error('Invalid location.');
+            }
+            defaultLocation = value;
+        }
+    });
 }
 
 const circle = new Circle(10);
-circle.
+circle.defaultLocation = {
+    x: 3,
+    y: 4
+};
+console.log(circle.defaultLocation);
 circle.draw();
