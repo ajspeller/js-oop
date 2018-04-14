@@ -8,26 +8,15 @@ function Circle(radius) {
 
 const circle = new Circle(10);
 
-circle.location = {
-    x: 1
-};
 
-// bracket notation:  useful for dynamic usage
-circle['location'] = {
-    x: 1
-};
+for (let key in circle) {
+    if (typeof circle[key] !== 'function')
+    console.log(key, circle[key]);
+}
 
-const propName = 'location';
-circle[propName] = {
-    x: 1
-};
+const keys = Object.keys(circle);
+console.log(keys);
 
-// bracket notation:  also useful when using special characters and reserved words
-const propName2 = 'center location';
-circle[propName2] = {
-    x: 1
-};
-
-// remove properties
-delete circle.location;
-delete circle['location'];
+if ('radius' in  circle) {
+    console.log('Circle has a radius');
+}
