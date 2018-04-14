@@ -1,12 +1,14 @@
-let circle = {
-    radius: 1,
-    location: {
-        x: 0,
-        y: 0
-    },
-    draw: function() {
-        console.log('draw');
+
+// factory function
+let createCircle = (radius) => {
+    return {
+        radius,
+        draw: function() {
+            console.log('draw');
+        }
     }
-};
+}
+
+const circle = createCircle(1);
 
 circle.draw();
