@@ -22,3 +22,8 @@ function Circle(radius) {
 const newCircle = new Circle(1);
 
 newCircle.draw();
+
+let x = {}  // let x = new Object();
+new String() // '' "" ``
+new Number() // 1, 2, 3 ...
+new Boolean() // true false
