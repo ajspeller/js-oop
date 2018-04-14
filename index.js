@@ -2,20 +2,28 @@
 // 1) hide the details
 // 2) show the essentials`
 
+// remove this. and just declare the variables locally to hide them
+
 // constructor function
 function Circle(radius) {
     this.radius = radius;
-    this.defaultLocation = { // hide
+    
+    let defaultLocation = { // hide
         x: 0,
         y: 0
     };
-    this.computeOptimumLocation = function () { // hide
+
+    let computeOptimumLocation = function () { // hide
 
     };
     this.draw = function () {
-        this.computeOptimumLocation()
+        computeOptimumLocation();
+        // defaultLocation
+        // this.radius
         console.log('draw');
     }
 }
 
 const circle = new Circle(10);
+circle.
+circle.draw();
