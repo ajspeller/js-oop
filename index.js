@@ -15,7 +15,11 @@ function Circle(radius) {
     }
 }
 
+// resetting the prototype
 Circle.prototype = Object.create(Shape.prototype);
+
+// whenever you reset the prototype, you should also reset the constructor
+Circle.prototype.constructor = Circle;
 
 // prototype member
 Circle.prototype.draw = function () {
