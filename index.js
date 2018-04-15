@@ -1,12 +1,13 @@
-function Shape() {
-
+function Shape(color) {
+    this.color = color;
 }
 
 Shape.prototype.duplicate = function () {
     console.log('duplicate');
 }
 
-function Circle(radius) {
+function Circle(radius, color) {
+    Shape.call(this, color); // super constructor
     // instance members
     this.radius = radius;
 
