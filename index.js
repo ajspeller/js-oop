@@ -1,17 +1,31 @@
-class Circle {
-    constructor(radius) {
-        this.radius = radius;
+// prevents pollution of the global object, window!
+// 'use strict';
+
+
+const Circle = function() {
+    this.draw = function() {
+        console.log(this);
     }
+}
+const c = new Circle();
 
-    // instance method
-    draw() {}
+// method call
+c.draw(); // this points to the circle instance
 
-    // static method
-    static parse(str) { // does not exist in the object
-        const radius = JSON.parse(str).radius;
-        return new Circle(radius);
+const draw = c.draw;
+
+console.log(draw);
+
+// function call
+console.log(draw()); // this point so the window object
+
+class Square {
+    draw() {
+        console.log(this);
     }
 }
 
-const circle = Circle.parse('{ "radius": 1 }');
-console.log(circle);
+const sq = new Square();
+console.log(sq.draw());
+const draw_again = sq.draw;
+console.log(draw_again()); // undefined because the body of the class is executed in strict mode
