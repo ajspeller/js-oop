@@ -1,11 +1,17 @@
-// function declaration
-function tally() {} // hoisted
+class Circle {
+    constructor(radius) {
+        this.radius = radius;
+    }
 
-// function expression
-const render = function () {}; // not hoisted
+    // instance method
+    draw() {}
 
-// class declaration
-class Warrior {} // not hoisted
+    // static method
+    static parse(str) { // does not exist in the object
+        const radius = JSON.parse(str).radius;
+        return new Circle(radius);
+    }
+}
 
-// class expression
-const Fighter = class {}; // not hoisted
+const circle = Circle.parse('{ "radius": 1 }');
+console.log(circle);
