@@ -1,30 +1,32 @@
-function extend(Child, Parent) {
-    // resetting the prototype
-    Child.prototype = Object.create(Parent.prototype);
-    // whenever you reset the prototype, you should also reset the constructor
-    Child.prototype.constructor = Child;
+function mixin(target, ...sources) {
+    Object.assign(target, ...sources);
 }
 
+const canEat = {
+    eat: function () {
+        this.hunger--;
+        console.log(`eating`);
+    }
+};
+const canWalk = {
+    walk: function () {
+        this.hunger--;
+        console.log(`walking`);
+    }
+};
 
-function Circle() {}
-
-extend(Circle, Shape); 
-
-Circle.prototype.duplicate = function () {
-    console.log('duplicate circle');
+const canSwim = {
+    swim: function () {
+        console.log(`swimming`);
+    }
 }
 
-function Square() {
-}
+function Person() {}
+mixin(Person.prototype, canEat, canSwim, canWalk);
+const person = new Person();
+console.log(person);
 
-extend(Square, Shape);
-
-Square.prototype.duplicate = function () {
-    console.log('duplicate square');
-}
-
-const shapes = [new Circle(), Square()];
-
-for (let shape of shapes) {
-    shape.duplicate();
-}
+function GoldFish() {}
+mixin(GoldFish.prototype, canEat, canSwim);
+const goldFish = new GoldFish();
+console.log(goldFish);
