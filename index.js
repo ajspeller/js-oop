@@ -1,23 +1,11 @@
-function Circle(radius) {
-    this.radius = radius;
-    this.draw = function() {
-        console.log(`draw`);
-    }
-}
+// function declaration
+function tally() {} // hoisted
 
-class ES6_Circle {
-    constructor(radius) {
-        this.radius = radius;
-        this.move = function() {  // method on the object
-            console.log(`move`);
-        }
-    }
-    draw() { // method on the prototype
-        this.console.log(`draw`);
-    }
-}
+// function expression
+const render = function () {}; // not hoisted
 
-const c = new Circle(1);
-const cES6 = new ES6_Circle(8);
+// class declaration
+class Warrior {} // not hoisted
 
-console.log(c, cES6);
+// class expression
+const Fighter = class {}; // not hoisted
