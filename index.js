@@ -1,19 +1,21 @@
-const _radius = Symbol(); // unique identifier
-const _draw = Symbol();
+const _radius = new WeakMap(); // the keys can be garbage collected
+const _move = new WeakMap();
 
 class Circle {
     constructor(radius) {
-        // this.radius = radius;
-        // this.['radius'] = radius;
-        this[_radius] = radius; // private because it cannot be accessed directly  
+        _radius.set(this, radius); // private
+        _move.set(this, () => {
+            console.log(`move`, this);
+        });
     }
-
-    [_draw]() { // computed property name in the prototype
+    draw() {
+        console.log(_radius.get(this));
+        _move.get(this)();
+        console.log(`draw`);
     }
 }
 
 const c = new Circle(9);
-console.log(c.radius);
 
-const key = (Object.getOwnPropertySymbols(c))[0];
-console.log(c[key]); // hack to access the property .. do not use
+console.log(c);
+c.draw();
