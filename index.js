@@ -5,19 +5,26 @@ function extend(Child, Parent) {
     Child.prototype.constructor = Child;
 }
 
-function Shape() {}
 
-Shape.prototype.duplicate = function () {
-    console.log('duplicate');
-}
-
-function Circle(radius, color) {}
+function Circle() {}
 
 extend(Circle, Shape); 
 
 Circle.prototype.duplicate = function () {
-    Shape.prototyoe.duplicate.call(this);
     console.log('duplicate circle');
 }
 
-const c = new Circle(3);
+function Square() {
+}
+
+extend(Square, Shape);
+
+Square.prototype.duplicate = function () {
+    console.log('duplicate square');
+}
+
+const shapes = [new Circle(), Square()];
+
+for (let shape of shapes) {
+    shape.duplicate();
+}
