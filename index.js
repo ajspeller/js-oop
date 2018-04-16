@@ -1,60 +1,23 @@
-function HtmlElement() {
-    this.click = function () {
-        console.log(`click`);
+function Circle(radius) {
+    this.radius = radius;
+    this.draw = function() {
+        console.log(`draw`);
     }
 }
 
-HtmlElement.prototype.focus = function () {
-    console.log(`focus`);
-}
-
-const htmlElement = new HtmlElement();
-
-console.log(htmlElement);
-
-function HtmlSelectElement(items) {
-    this.items = items ? items : [];
-    this.addItem = function (item) {
-        this.items.push(item);
-    };
-    this.removeItem = function (item) {
-        let idx = items.indexOf(item);
-        if (idx !== -1) {
-            this.items.splice(idx, 1);
+class ES6_Circle {
+    constructor(radius) {
+        this.radius = radius;
+        this.move = function() {  // method on the object
+            console.log(`move`);
         }
     }
-    this.displayItems = function () {
-        console.table(items);
-    }
-    this.render = function () {
-        let str = '';
-        str += `<select>`;
-        this.items.forEach(i => {
-            str += `<option>${i}</option>`;
-        })
-        str += `</select>`;
-        return str;
+    draw() { // method on the prototype
+        this.console.log(`draw`);
     }
 }
 
-HtmlSelectElement.prototype = new HtmlElement();
-HtmlSelectElement.constructor = HtmlSelectElement;
+const c = new Circle(1);
+const cES6 = new ES6_Circle(8);
 
-function HtmlImageElement(source) {
-    this.source = source;
-    this.render = function() {
-        return `<img src="${this.source}"> />`;
-    }
-}
-
-HtmlImageElement.prototype = new HtmlElement();
-HtmlImageElement.constructor = HtmlImageElement;
-
-const elements = [
-    new HtmlSelectElement([1, 2, 3]),
-    new HtmlImageElement('www.ajspeller.com')
-]
-
-for (let element of elements) {
-    console.log(element.render()); 
-} 
+console.log(c, cES6);
