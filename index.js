@@ -1,31 +1,19 @@
-// prevents pollution of the global object, window!
-// 'use strict';
+const _radius = Symbol(); // unique identifier
+const _draw = Symbol();
 
-
-const Circle = function() {
-    this.draw = function() {
-        console.log(this);
+class Circle {
+    constructor(radius) {
+        // this.radius = radius;
+        // this.['radius'] = radius;
+        this[_radius] = radius; // private because it cannot be accessed directly  
     }
-}
-const c = new Circle();
 
-// method call
-c.draw(); // this points to the circle instance
-
-const draw = c.draw;
-
-console.log(draw);
-
-// function call
-console.log(draw()); // this point so the window object
-
-class Square {
-    draw() {
-        console.log(this);
+    [_draw]() { // computed property name in the prototype
     }
 }
 
-const sq = new Square();
-console.log(sq.draw());
-const draw_again = sq.draw;
-console.log(draw_again()); // undefined because the body of the class is executed in strict mode
+const c = new Circle(9);
+console.log(c.radius);
+
+const key = (Object.getOwnPropertySymbols(c))[0];
+console.log(c[key]); // hack to access the property .. do not use
