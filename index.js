@@ -23,21 +23,38 @@ function HtmlSelectElement(items) {
             this.items.splice(idx, 1);
         }
     }
-    this.displayItems = function() {
+    this.displayItems = function () {
         console.table(items);
+    }
+    this.render = function () {
+        let str = '';
+        str += `<select>`;
+        this.items.forEach(i => {
+            str += `<option>${i}</option>`;
+        })
+        str += `</select>`;
+        return str;
     }
 }
 
 HtmlSelectElement.prototype = new HtmlElement();
 HtmlSelectElement.constructor = HtmlSelectElement;
 
-const h = new HtmlSelectElement([1, 2, 3]);
+function HtmlImageElement(source) {
+    this.source = source;
+    this.render = function() {
+        return `<img src="${this.source}"> />`;
+    }
+}
 
+HtmlImageElement.prototype = new HtmlElement();
+HtmlImageElement.constructor = HtmlImageElement;
 
-console.log(h);
+const elements = [
+    new HtmlSelectElement([1, 2, 3]),
+    new HtmlImageElement('www.ajspeller.com')
+]
 
-h.displayItems();
-h.addItem(7);
-h.displayItems();
-h.removeItem(7);
-h.displayItems();
+for (let element of elements) {
+    console.log(element.render()); 
+} 
