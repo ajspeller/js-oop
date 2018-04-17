@@ -1,42 +1,17 @@
-const _items = new WeakMap();
+const _radius = new WeakMap();
 
-class Stack {
-
-    constructor() {
-        _items.set(this, []);
+class Circle {
+    constructor(radius) {
+        _radius.set(this, radius);
     }
 
-    peek() {
-        const items = _items.get(this);
-        if (items.length === 0) {
-            throw new Error(`Stack is empty`);
-        }
-        return items[items.length - 1];
-    }
-
-    push(value) {
-        _items.get(this).push(value);
-    }
-
-    pop() {
-        const items = _items.get(this);
-        if (_items.get(this).length === 0) {
-            throw new Error(`Stack is empty`);
-        }
-        return _items.get(this).pop();
-    }
-
-    get count() {
-        const items = _items.get(this);
-        return items.length;
+    draw() {
+        console.log(`Circle with radius ` + _radius.get(this));
     }
 }
 
-var stack = new Stack();
-stack.push(1);
-stack.push(2);
-stack.push('a');
-console.log(stack.count);
-console.log(stack.peek());
-stack.pop();
-console.log(stack.peek());
+const c = new Circle(10);
+// hack to get around the fact that _radius is private, 
+// module will protect this private variable
+_radius.get(c); 
+c.draw();
