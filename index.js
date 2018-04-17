@@ -1,25 +1,25 @@
-const _radius = new WeakMap(); // the keys can be garbage collected
-
-class Circle {
-    constructor(radius) {
-        _radius.set(this, radius); // private
-
-        // Object.defineProperty(this, 'radius', {
-        //     get: function () {
-
-        //     }
-        // });
+class Shape {
+    constructor(color) {
+        this.color = color;
     }
-    get radius() {
-        return _radius.get(this);
-    }
-    set radius(value){
-        if (value <= 0) {
-            throw new Error(`invalis raidus`);
-        }
-        _radius.set(this.value);
+    move() {
+        console.log(`move`);
     }
 }
 
+class Circle extends Shape {
+    constructor(color, radius) {
+        super(color); // call the constructor of the parent object
+        this.radius = radius;
+    }
+    draw() {
+        console.log(`draw`);
+    }
+}
 
-const c = new Circle(9);
+const c = new Circle('red', 4);
+
+console.log(c);
+
+c.move();
+c.draw();
