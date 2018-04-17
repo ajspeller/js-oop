@@ -1,25 +1,18 @@
 class Shape {
-    constructor(color) {
-        this.color = color;
-    }
     move() {
-        console.log(`move`);
+        console.log(`shape move`);
     }
 }
 
 class Circle extends Shape {
-    constructor(color, radius) {
-        super(color); // call the constructor of the parent object
-        this.radius = radius;
-    }
-    draw() {
-        console.log(`draw`);
+    move() {
+        super.move();
+        console.log(`circle move`);
     }
 }
 
-const c = new Circle('red', 4);
+const c = new Circle();
 
 console.log(c);
 
 c.move();
-c.draw();
